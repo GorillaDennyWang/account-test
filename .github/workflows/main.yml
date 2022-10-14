@@ -40,8 +40,8 @@ jobs:
         run: ls ../
       - name: ls ../../../../
         run: ls ../../../../../../
-      - name: cd /home/dependency
-        run: cd /home/dependency
+      - name: cd ../../../../
+        run: cd ../../../../
       - name: ls
         run: ls
       - name: build account-manager
