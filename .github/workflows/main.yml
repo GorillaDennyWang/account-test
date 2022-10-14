@@ -38,9 +38,9 @@ jobs:
         run: ls 
       - name : ls ../
         run: ls ../
-      - name: ls ../../
-        run: ls ../../
-      - name: cp -r /home/dependency/* /home/docker/actions-runner/_work/account-test/account-test  
-        run: cp -r /home/dependency/* /home/docker/actions-runner/_work/account-test/account-test
+      - name: ls ../../../../
+        run: ls ../../../../
+      - name: cp -r ../../../../../home/dependency/* /home/docker/actions-runner/_work/account-test/account-test  
+        run: cp -r ../../../../..//home/dependency/* /home/docker/actions-runner/_work/account-test/account-test
       - name: build account-manager
         run: python3 scripts/build.py
