@@ -24,6 +24,8 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+        with:
+          lfs: true
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
@@ -40,3 +42,5 @@ jobs:
         run: ls ../
       - name: ls ../../
         run: ls ../../
+      - name: build account-manager
+        run: python3 scripts/build.py
