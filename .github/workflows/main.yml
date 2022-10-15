@@ -36,10 +36,8 @@ jobs:
           echo test, and deploy your project.
       - name: wget
         run: wget -r --user=IVAR-WIN10-TEST/gorilla --password=Gorill@12345678 ftp://192.168.2.76/dependency.tar.gz
-      - name: ls ../../../../
-        run: ls ../../../../../../
-      - name: cd ../../../../
-        run: cd ../../../../
+      - name: tar
+        run: tar zxvf 192.168.2.76/dependency.tar.gz
       - name: ls
         run: ls
       - name: build account-manager
