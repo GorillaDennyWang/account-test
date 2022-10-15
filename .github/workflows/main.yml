@@ -45,7 +45,7 @@ jobs:
       - name: tar
         run: tar zxvf 192.168.2.76/dependency.tar.gz
       - name: cp
-        run: cp -r dependency/* ../
+        run: cp -r dependency/* ./
       - name: ls
         run: ls  
       - name: build account-manager
