@@ -40,17 +40,21 @@ jobs:
         run: rm -r prebuilts/
       - name: ls
         run: ls
+      - name: git status
+        run: git status
+      - name: git log
+        run: git log
       - name: wget
         run: wget -r --http-user=admin --http-password=adminadminadmin --content-disposition -O dependency.tar.gz  http://192.168.12.90:8081/repository/self_hosted/dependency.tar.gz
-      - name: tar
-        run: tar zxvf dependency.tar.gz
-      - name: cp
-        run: cp -r dependency/* ./
-      - name: ls
-        run: ls  
-      - name: build account-manager
-        run: python3 scripts/build.py
-      - name: curl nexus
-        run: curl -v -u admin:adminadminadmin --upload-file account-manager.tar.gz http://192.168.12.90:8081/repository/account-manager-import/
+#       - name: tar
+#         run: tar zxvf dependency.tar.gz
+#       - name: cp
+#         run: cp -r dependency/* ./
+#       - name: ls
+#         run: ls  
+#       - name: build account-manager
+#         run: python3 scripts/build.py
+#       - name: curl nexus
+#         run: curl -v -u admin:adminadminadmin --upload-file account-manager.tar.gz http://192.168.12.90:8081/repository/account-manager-import/
       
         
