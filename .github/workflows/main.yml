@@ -40,6 +40,10 @@ jobs:
         run: rm -r prebuilts/
       - name: ls
         run: ls
+      - name: git tags -d
+        run: git tag -d
+      - name: git fetch
+        run: git fetch --tags
       - name: git status
         run: git status
       - name: git log
