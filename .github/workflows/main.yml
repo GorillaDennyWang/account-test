@@ -57,7 +57,7 @@ jobs:
       - name: ls
         run: ls
       - name: mount
-        run: mount -t cifs //192.168.12.173/IOT-Release/account-manager smbtmp -o user="brightcheng",password=${{ secrets.SMB_PASSWORD }},iocharset=utf8
+        run: mount -t cifs //192.168.12.173/IOT-Release/account-manager smbtmp -o user="brightcheng",password=${{ env.SMB_PASSWORD }},iocharset=utf8
       - name: unmount
         run: umount smbtmp
       # - name: build account-manager
