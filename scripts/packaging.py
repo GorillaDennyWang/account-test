@@ -148,9 +148,9 @@ def main(argv):
     for item, value in os.environ.items():
         print('{}: {}'.format(item, value))
     global SERVICE
-    print (os.environ['CI_PROJECT_NAME'])
-    if 'CI_PROJECT_NAME' in os.environ:
-        SERVICE = os.environ['CI_PROJECT_NAME']
+    print (os.getenv('GH_REPOSITORY') )
+    if 'GH_REPOSITORY' in os.environ:
+        SERVICE = os.getenv('GH_REPOSITORY')    #GH_REPOSITORY
     else :
         print ('SERVICE_NAME Not Found')
         raise SystemExit(-1)
