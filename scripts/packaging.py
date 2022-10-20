@@ -15,6 +15,10 @@ PROJECT=""
 VERSION=""
 SERVICE=''
 
+SMB_URL=os.environ['SMB_URL']
+SMB_USERNAME=os.environ['SMB_USERNAME']
+SMB_PASSWORD=os.environ['SMB_PASSWORD']
+
 scriptPath = Path(__file__)
 if not scriptPath.is_absolute():
     scriptPath = Path(os.getcwd()).joinpath(scriptPath)
@@ -43,9 +47,10 @@ def packaging():
                 run('net use "X:" /delete /y')
             # compatibility
             #qtAssignPath = os.path.join('X:\\' ,PROJECT, 'win-x86_64')
-            if os.getenv('CI_COMMIT_TAG'):
+            commitType = os.getenv('GITHUB_REF_TYPE')
+            if commitType == 'tag':
                 print('Release build')
-                regExpr(os.environ['CI_COMMIT_TAG'])
+                regExpr(os.getenv('GITHUB_REF_NAME'))
                 winCMD = 'net use /y "X:" "\\\\%SMB_URL%\\IOT-Release\\'+ SERVICE +'" /u:"GORILLASCIENCE\\%SMB_USERNAME%" %SMB_PASSWORD%'
 
                 run(winCMD)
@@ -80,11 +85,12 @@ def packaging():
             smbtmpPath = os.path.join(rootPath, 'smbtmp')
             os.makedirs(smbtmpPath, mode=0o755, exist_ok=True)
             os.chdir(rootPath)
-            if os.getenv('CI_COMMIT_TAG'):
+            commitType = os.getenv('GITHUB_REF_TYPE')
+            if commitType == 'tag':
                 print ('Release build')
-                regExpr(os.environ['CI_COMMIT_TAG'])
+                regExpr(os.getenv('GITHUB_REF_NAME'))
                 # run('mount -t cifs //$SMB_URL/IOT-Release/'+ SERVICE +' smbtmp -o user=$SMB_USERNAME,iocharset=utf8,password=$SMB_PASSWORD')
-                run('mount -t cifs //$SMB_URL/IOT-Release/account-manager smbtmp -o user=$SMB_USERNAME,iocharset=utf8,password=$SMB_PASSWORD')
+                run('mount -t cifs //'+ SMB_URL +'/IOT-Release/account-manager smbtmp -o user='+ SMB_USERNAME +',iocharset=utf8,password='+SMB_PASSWORD)
                 projPath = os.path.join(smbtmpPath,'build' , PROJECT, VERSION, 'linux-x86_64')
 
                 #compatibility
