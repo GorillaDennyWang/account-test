@@ -83,7 +83,8 @@ def packaging():
             if os.getenv('CI_COMMIT_TAG'):
                 print ('Release build')
                 regExpr(os.environ['CI_COMMIT_TAG'])
-                run('mount -t cifs //$SMB_URL/IOT-Release/'+ SERVICE +' smbtmp -o user=$SMB_USERNAME,iocharset=utf8,password=$SMB_PASSWORD')
+                # run('mount -t cifs //$SMB_URL/IOT-Release/'+ SERVICE +' smbtmp -o user=$SMB_USERNAME,iocharset=utf8,password=$SMB_PASSWORD')
+                run('mount -t cifs //$SMB_URL/IOT-Release/account-manager smbtmp -o user=$SMB_USERNAME,iocharset=utf8,password=$SMB_PASSWORD')
                 projPath = os.path.join(smbtmpPath,'build' , PROJECT, VERSION, 'linux-x86_64')
 
                 #compatibility
@@ -95,7 +96,7 @@ def packaging():
                 '''
             else:
                 print ('Test build')
-                run('mount -t cifs //$SMB_URL/IOT-Release/ci/Packaging/'+ SERVICE +' smbtmp -o user=$SMB_USERNAME,iocharset=utf8,password=$SMB_PASSWORD')
+                run('mount -t cifs //$SMB_URL/IOT-Release/ci/Packaging/account-manager smbtmp -o user=$SMB_USERNAME,iocharset=utf8,password=$SMB_PASSWORD')
                 projPath = os.path.join(smbtmpPath, PROJECT, 'linux-x86_64')
 
             os.makedirs(projPath, mode=0o755, exist_ok=True)
