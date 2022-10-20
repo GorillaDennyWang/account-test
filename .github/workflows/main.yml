@@ -55,11 +55,15 @@ jobs:
       - name: cp
         run: cp -r dependency/* ./
       - name: ls
-        run: ls  
-      - name: build account-manager
-        run: python3 scripts/build.py
-      - name: packaging account-manager
-        run: python3 scripts/packaging.py
+        run: ls
+      - name: mount
+        run: mount -t cifs //192.168.12.173/IOT-Release/account-manager smbtmp -o user="brightcheng",iocharset=utf8,password="a802107368-a802107368-"
+      - name: unmount
+        run: umount smbtmp
+      # - name: build account-manager
+      #   run: python3 scripts/build.py
+      # - name: packaging account-manager
+      #   run: python3 scripts/packaging.py
 #       - name: curl nexus
 #         run: curl -v -u admin:adminadminadmin --upload-file account-manager.tar.gz http://192.168.12.90:8081/repository/account-manager-import/
       
