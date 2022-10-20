@@ -119,7 +119,8 @@ def setVersion():
     # if 'CI_COMMIT_TAG' in os.environ:
     commitType = os.getenv('GITHUB_REF_TYPE')
     if commitType == 'tag':
-        versionStr = os.environ['CI_COMMIT_TAG']
+        #versionStr = os.environ['CI_COMMIT_TAG']
+        versionStr = os.getenv('GITHUB_REF_NAME')
         # need to modify VERSION.txt 
     elif os.path.exists(versionPath):
         versionStr = Path(versionPath).read_text().replace('\n', '')
