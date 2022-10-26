@@ -61,7 +61,7 @@ jobs:
       # - name: unmount
       #   run: umount smbtmp
       - name: build account-manager
-        run: python3 scripts/build.py
+        run: python scripts/build.py
       # - name: packaging account-manager
       #   run: python3 scripts/packaging.py
 #       - name: curl nexus
