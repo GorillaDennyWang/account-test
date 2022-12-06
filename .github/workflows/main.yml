@@ -44,5 +44,7 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+      - name: Build account-test
+        run: python scripts\build.py
    
         
