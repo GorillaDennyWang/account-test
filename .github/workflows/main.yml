@@ -18,7 +18,7 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: [self-hosted, Windows]
+    runs-on: [self-hosted, runner-image]
     env:
       PROJECT: ${{ secrets.PROJECT }}
       SMB_PASSWORD: ${{ secrets.SMB_PASSWORD }}            
@@ -32,6 +32,8 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+        with:
+          lfs: true
         
       # Runs a single command using the runners shell
       - name: Run a one-line script
@@ -42,29 +44,5 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-      - name: rm
-        run: rm -r externals/
-      - name: rm prebuilts/
-        run: rm -r prebuilts/
-      - name: ls
-        run: ls
-      - name: wget
-        run: wget -r --http-user=admin --http-password=adminadminadmin --content-disposition -O dependency.tar.gz  http://192.168.12.90:8081/repository/self_hosted/dependency.tar.gz
-      - name: tar
-        run: tar zxvf dependency.tar.gz
-      - name: cp
-        run: cp -r dependency/* ./
-      - name: ls
-        run: ls
-      # - name: mount
-      #   run: mount -t cifs //192.168.12.173/IOT-Release/account-manager smbtmp -o user="brightcheng",password=${{ env.SMB_PASSWORD }},iocharset=utf8
-      # - name: unmount
-      #   run: umount smbtmp
-      - name: build account-manager
-        run: python scripts/build.py
-      # - name: packaging account-manager
-      #   run: python3 scripts/packaging.py
-#       - name: curl nexus
-#         run: curl -v -u admin:adminadminadmin --upload-file account-manager.tar.gz http://192.168.12.90:8081/repository/account-manager-import/
-      
+   
         
